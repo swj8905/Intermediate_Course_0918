@@ -1,4 +1,3 @@
-# GUI 개발에 사용할때 기본적으로 입력
 from PyQt5.QtWidgets import *
 import sys
 from PyQt5 import uic
@@ -20,13 +19,13 @@ class MainDialog(QDialog):
         title = soup.select("div.sect-movie-chart strong.title")
         img = soup.select("span.thumb-image > img")
         for i in range(len(title)):
-            getattr(self, f"text{i + 1}").setText(f"{i + 1}위." + title[i].string)
+            getattr(self, f"text{i+1}").setText(f"{i+1}위." + title[i].string)
             img_url = img[i].attrs["src"]
             data = req.urlopen(img_url).read()
             pixmap = QPixmap()
             pixmap.loadFromData(data)
             pixmap = pixmap.scaled(185, 260)
-            getattr(self, f"img{i + 1}").setPixmap(pixmap)
+            getattr(self, f"img{i+1}").setPixmap(pixmap)
 
 
 QApplication.setStyle("fusion")
